@@ -1,0 +1,72 @@
+
+View 
+____________________
+
+@{
+    Layout = null;
+}
+
+@model FormsAndPost.Models.UserModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @Html.BeginForm()
+        {
+
+        <ol>
+            <li>
+                <label>Name</label>
+                @Html.TextBoxFor(m=>m.Name);
+            </li>
+            <li>
+                <label>Password</label>
+                @Html.TextAreaFor(m => m.PassWord);
+            </li>
+        </ol>
+        <input type="submit" value="Login" id="btnSubmit" />
+
+        }
+    </div>
+</body>
+</html>
+
+2, Models
+______________________
+namespace FormsAndPost.Models
+{
+    public class UserModel
+    {
+        public string Name { get; set; }
+        public string PassWord { get; set; }
+
+    }
+}
+
+3, Controller
+
+ public class MyFormsController : Controller
+    {
+        // GET: MyForms
+        public ActionResult Index()
+        {
+            return View();
+        }
+       
+        [HttpPost]
+        public ActionResult Index( UserModel userModel)
+        {
+            return View();
+        }
+
+    }
+
+
+
+
+
