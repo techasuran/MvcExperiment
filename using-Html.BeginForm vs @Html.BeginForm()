@@ -1,0 +1,61 @@
+ @Html.BeginForm()
+        {
+
+        <ol>
+            <li>
+                <label>Name</label>
+                @Html.TextBoxFor(m=>m.Name);
+            </li>
+            <li>
+                <label>Password</label>
+                @Html.TextAreaFor(m => m.PassWord);
+            </li>
+        </ol>
+        <input type="submit" value="Login" id="btnSubmit" />
+        }
+        
+        output : 
+        
+        System.Web.Mvc.Html.MvcForm {
+
+    Name ;
+    Password ;
+
+} 
+      
+      issue : System.Web.Mvc.Html.MvcForm { text will appear on the view .  
+        
+        
+         v/s 
+
+ @using (Html.BeginForm())
+    {
+
+        <ol>
+            <li>
+                <label>Name</label>
+                @Html.TextBoxFor(m => m.Name);
+            </li>
+            <li>
+                <label>Password</label>
+                @Html.TextAreaFor(m => m.PassWord);
+            </li>
+        </ol>
+        <input type="submit" value="Login" id="btnSubmit" />
+    }
+ 
+ 
+ out put: 
+ 
+ 
+    Name ;
+    Password ;
+
+        
+        
+        
+        
+        
+       
+        
+        
