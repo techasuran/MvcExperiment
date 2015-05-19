@@ -1,0 +1,83 @@
+1, To test the @Html.ValidationMessageFor , we need to decorate the the model properties with attributes.
+
+2, these attributes are from the namespace 
+using System.ComponentModel.DataAnnotations;
+
+3,Since we have placed the ValidationMessageFor against each property, it will display next to it only
+
+
+Model
+***********************
+    public class UserModel
+    {
+        [Required(ErrorMessage="user name should not be empty")]
+        public string Name { get; set; }
+
+        [StringLength(50,ErrorMessage="The {0} field must be atleast {2} characters long",MinimumLength=8)]
+        [Required(ErrorMessage="The passsword field should not be empty")]
+        public string PassWord { get; set; }
+
+    }
+    
+    
+    View
+    ****************************
+    
+@{
+    Layout = null;
+}
+
+@model FormsAndPost.Models.UserModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+      <ol>
+            <li>
+                <label>Name</label>
+                @Html.TextBoxFor(m => m.Name);
+                @Html.ValidationMessageFor(m => m.Name);
+            </li>
+            <li>
+                <label>Password</label>
+                @Html.TextAreaFor(m => m.PassWord);
+                @Html.ValidationMessageFor(m => m.PassWord);
+            </li>
+        </ol>
+        <input type="submit" value="Login" id="btnSubmit" />
+    }
+</body>
+
+</html>
+    
+    
+    Controller
+    ******************************
+     public class MyFormsController : Controller
+    {
+        // GET: MyForms
+        public ActionResult Index()
+        {
+            return View();
+        }
+       
+       [HttpPost]
+        public ActionResult Index( UserModel userModel)
+        {
+            if (ModelState.IsValid)
+            {
+                return View("Validated");  // here I am sending a view which is there in the Views/MyForms folder
+
+            }
+
+            return View();
+        }
+
+    }
+    
